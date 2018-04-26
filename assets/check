@@ -39,10 +39,11 @@ fi
 args_url="$endpoint/api/storage$repository$folder"
 
 args_security=
+args_token=
 
 [ -n "$username" ] && args_security="-u $username";
 [ -n "$password" ] && args_security="$args_security:$password";
-[ -n "$token" ] && args_security="-H 'X-JFrog-Art-Api: $token'";
+[ -n "$token" ] && args_token="-HX-JFrog-Art-Api: $token";
 trueValue="true"
 [ -n "$skip_ssl_verification" ] && [ "${skip_ssl_verification,,}" = "${trueValue,,}" ] && args_security="$args_security -k";
 
@@ -51,7 +52,7 @@ if [ -n "$paramRegex" ]; then
 	regex=$paramRegex
 fi
 
-final_url=$(echo "$args_security" " $args_url")
+final_url=$(echo "$args_security" " $args_token" " $args_url")
 # echo $final_url
 
 if [ -z "$version" ]; then

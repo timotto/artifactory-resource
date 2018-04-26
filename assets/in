@@ -53,10 +53,11 @@ fi
 args_url="$endpoint/api/storage$repository$folder"
 
 args_security=
+args_token=
 
 [ -n "$username" ] && args_security="-u $username";
 [ -n "$password" ] && args_security="$args_security:$password";
-[ -n "$token" ] && args_security="-H 'X-JFrog-Art-Api: $token'";
+[ -n "$token" ] && args_token="-HX-JFrog-Art-Api: $token";
 trueValue="true"
 [ -n "$skip_ssl_verification" ] && [ "${skip_ssl_verification,,}" = "${trueValue,,}" ] && args_security="$args_security -k";
 
@@ -79,6 +80,6 @@ fi
 args_url="$endpoint$repository/$file"
 
 # echo $args_security "-O" "$args_url"
-curl $args_security "-O" "$args_url"
+curl $args_security "$args_token" "-O" "$args_url"
 
 echo $file_json | jq '.[].version | {version: {version: .}}' >&3

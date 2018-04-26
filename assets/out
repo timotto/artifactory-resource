@@ -62,17 +62,18 @@ fi
 args_url="$args_url/$filename"
 
 args_security=
+args_token=
 
 [ -n "$username" ] && args_security="-u $username";
 [ -n "$password" ] && args_security="$args_security:$password";
-[ -n "$token" ] && args_security="-H 'X-JFrog-Art-Api: $token'";
+[ -n "$token" ] && args_token="-HX-JFrog-Art-Api: $token";
 trueValue="true"
 [ -n "$skip_ssl_verification" ] && [ "${skip_ssl_verification,,}" = "${trueValue,,}" ] && args_security="$args_security -k";
 
 # echo "########## $filename, $file"
 
 # echo $args_security "-T $abs_file $args_url "
-curl $args_security "-T$abs_file" "$args_url"
+curl $args_security "$args_token" "-T$abs_file" "$args_url"
 
 
 # echo $file $regex
