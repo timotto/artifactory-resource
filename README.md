@@ -30,6 +30,7 @@ resources:
 * `regex`: *Required.* Regular expression used to extract artifact version, must contain 'version' group. ```E.g. myapp-(?<version>.*).tar.gz```  
 * `username`: *Optional.* Username for HTTP(S) auth when accessing an authenticated repository  
 * `password`: *Optional.* Password for HTTP(S) auth when accessing an authenticated repository  
+* `token`: *Optional.* X-JFrog-Art-Api token for HTTP(S) auth when accessing authenticated repositiry.
 * `skip_ssl_verification`: *Optional.* Skip ssl verification when connecting to Artifactory's APIs. Values: ```true``` or ```false```(default).  
 
 ## Parameter Configuration
